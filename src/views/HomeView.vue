@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1 class="">首页</h1>
+    <h1 class="">首页test</h1>
     <p>欢迎来到首页</p>
   </div>
 </template>
