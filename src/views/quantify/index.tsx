@@ -1,6 +1,6 @@
 import { LayoutList } from 'lucide-vue-next';
 
-import type { routeItem } from '../router';
+import type { routeItem } from '../../router';
 
 const config: routeItem = [
   {
@@ -13,8 +13,8 @@ const config: routeItem = [
     ],
     route: {
       path: '/quantify',
-      name: 'LargeMarketCapitalization',
-      component: () => import('./LargeMarketCapitalization.vue'),
+      name: 'LargeMarket',
+      component: () => import('./pages/LargeMarket.vue'),
     },
   },
 ];

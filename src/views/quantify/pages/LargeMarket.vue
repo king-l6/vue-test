@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>大市值</h1>
+    <h3 class="flex text-lg font-semibold mb-2 ml-2 mt-5 ">大市值</h3>
     <Table
       rowKey="id"
       size="small"
@@ -15,7 +15,7 @@
 
 <script lang="ts" setup>
 import { computed, onMounted, ref, type Ref } from 'vue';
-import { getLargeMarketData } from '../axios';
+import { getLargeMarketList } from '../api';
 import { Table } from 'ant-design-vue';
 import { getPreviousWorkdays } from '../utils/getDateList';
 import dayjs from 'dayjs';
@@ -27,7 +27,7 @@ onMounted(async () => {
 const tableData: Ref<any[]> = ref([]);
 const initData = () => {
   previousWorkdays.forEach(async (date) => {
-    const { data } = await getLargeMarketData({
+    const { data } = await getLargeMarketList({
       date,
       url: '/qs_svc/v1/stock_start_rank_f',
       version: 2,

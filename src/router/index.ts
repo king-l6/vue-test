@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
-import routeConfig from '../pages/index';
+import routeConfig from '@/views/quantify';
 import BiliLayout from '../components/BiliLayout.vue';
 export type menuItem = {
   label: string;

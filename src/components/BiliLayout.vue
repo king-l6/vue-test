@@ -33,7 +33,7 @@ import { Layout, Menu } from 'ant-design-vue';
 import { IndentDecrease, IndentIncrease } from 'lucide-vue-next';
 import { onMounted, ref, watchEffect } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import routeConfig from '../pages/index';
+import routeConfig from '@/views/quantify';
 // eslint-disable-next-line no-underscore-dangle
 const LayoutSider = Layout.Sider;
 const LayoutContent = Layout.Content;
@@ -57,21 +57,23 @@ onMounted(async () => {
     type: 'group',
   });
   menusData.value.push(createGroup('量化'));
-  menusData.value.push(...routeConfig.map((i) => i.menu[0]));
+  menusData.value.push(...routeConfig.map((i: { menu: any[]; }) => i.menu[0]));
   console.log(menusData.value);
 });
 const handleSetTitle = (key: string) => {
   const current = menusData.value.find((i) => i.key && key.includes(i.key)) || {
     label: '',
   };
-  document.title = `${current?.label} - 干预信息平台`;
+  console.log(key, current);
+  const currentTitle = ['/quantify'].includes(key) ? '量化' : current.label;
+  document.title = `${current?.label} - ${currentTitle}`;
   selectedKeys.value = menusData.value
     .filter((i) => key.includes(i.key))
     .map((i) => i.key);
 };
 const handleClick = (e: any) => {
   console.log(e);
-  
+
   handleSetTitle(e.key);
   router.push({ path: e.key as string });
 };
