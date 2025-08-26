@@ -1,9 +1,15 @@
-import { createApp } from 'vue'
-import './style.css'
+import { createApp } from 'vue';
+import './assets';
+import './style.css';
 // 由于App.vue没有默认导出，使用具名导入
-import App  from './App.vue'
-import router from './router'
+import App from './App.vue';
+import initRouter from './router';
 
-const app = createApp(App)
-app.use(router)
-app.mount('#app')
+(async () => {
+  const app = createApp(App);
+  const router = initRouter();
+  app.use(router);
+  await router.isReady();
+  app.mount('#app');
+})();
+

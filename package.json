@@ -16,8 +16,8 @@
     "@vitejs/plugin-vue-jsx": "^4.1.2",
     "ant-design-vue": "^4.2.6",
     "axios": "^1.8.4",
+    "dayjs": "^1.11.13",
     "echarts": "^5.6.0",
-    "lucide-vue-next": "^0.486.0",
     "pnpm": "^10.7.0",
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-swc-transform": "^1.1.0",
@@ -31,10 +31,13 @@
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
     "autoprefixer": "^10.4.21",
+    "less": "^4.4.0",
+    "lucide-vue-next": "^0.486.0",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.4",
     "typescript": "~5.7.2",
     "vite": "^6.2.0",
+    "vue-jsx-runtime": "^0.1.0",
     "vue-tsc": "^2.2.4"
   }
 }

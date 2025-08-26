@@ -1,0 +1,158 @@
+
+
+#root {
+  height: 100vh;
+  width: 100%;
+}
+
+html {
+  font-size: 14px;
+}
+
+*,
+:before,
+:after {
+  box-sizing: border-box;
+}
+
+hr {
+  height: 0;
+  color: inherit;
+  border-top-width: 1px
+}
+
+:before,
+:after {
+  --tw-content: ""
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit
+}
+
+
+
+body {
+  margin: 0;
+  line-height: inherit;
+
+  .ant-form-item .ant-form-item-label>label {
+    color: var(--color-text2);
+  }
+
+  .ant-form-item-explain-error {
+    font-size: 12px;
+  }
+
+  .ant-descriptions .ant-descriptions-item-label {
+    color: var(--color-text3);
+  }
+
+  .ant-collapse {
+    border-color: var(--color-border-regular);
+  }
+
+  .ant-collapse .ant-collapse-content {
+    border-color: var(--color-border-regular);
+  }
+}
+
+.ant-modal-fullpage {
+  .ant-modal-body {
+    padding: 0;
+  }
+}
+
+.switch-title.ant-switch {
+  background: var(--color-bg2) !important;
+  font-weight: 600;
+  width: 100%;
+  padding: 0 12px;
+  height: 30px;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 4px;
+
+  &.ant-switch-checked::before {
+    content: '\e003';
+  }
+
+  &::before {
+    font-family: 'BDC-ykutc0b8r';
+    content: '\e004';
+    font-size: 12px;
+    margin-right: 12px;
+    text-rendering: geometricPrecision;
+  }
+
+  &::after {
+    content: attr(data-title);
+    margin-right: 12px;
+  }
+
+  .ant-switch-handle,
+  .ant-switch-inner {
+    display: none;
+  }
+}
+
+.ant-form-item .ant-form-item-label>label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+  order: 1;
+  margin-inline-end: 0;
+}
+
+.c-primary {
+  color: var(--color-primary);
+
+  &.ant-btn-link:not(:disabled):hover {
+    color: var(--color-blue-hover);
+  }
+}
+
+.c-blue {
+  color: var(--color-blue);
+
+  &.ant-btn-link:not(:disabled):hover {
+    color: var(--color-blue-hover);
+  }
+}
+
+.c-red {
+  color: var(--color-red);
+
+  &.ant-btn-link:not(:disabled):hover {
+    color: var(--color-red-hover);
+  }
+}
+
+.c-yellow {
+  color: var(--color-yellow);
+
+  &.ant-btn-link:not(:disabled):hover {
+    color: var(--color-yellow-hover);
+  }
+}
+
+.c-green {
+  color: var(--color-green);
+
+  &.ant-btn-link:not(:disabled):hover {
+    color: var(--color-green-hover);
+  }
+}
+
+.modal-code {
+  padding: 12px;
+  font-size: 12px;
+  background-color: #fff;
+  width: 400px;
+  margin-top: 0;
+  margin-left: 12px;
+  font-family: SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace !important;
+}

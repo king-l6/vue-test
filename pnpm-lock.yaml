@@ -19,31 +19,31 @@ importers:
         version: 4.1.7
       '@tailwindcss/vite':
         specifier: ^4.1.4
-        version: 4.1.7(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.30.1))
+        version: 4.1.7(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(less@4.4.0)(lightningcss@1.30.1))
       '@vitejs/plugin-vue-jsx':
         specifier: ^4.1.2
-        version: 4.1.2(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.30.1))(vue@3.5.13(typescript@5.7.3))
+        version: 4.1.2(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(less@4.4.0)(lightningcss@1.30.1))(vue@3.5.13(typescript@5.7.3))
       ant-design-vue:
         specifier: ^4.2.6
         version: 4.2.6(vue@3.5.13(typescript@5.7.3))
       axios:
         specifier: ^1.8.4
         version: 1.9.0
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.13
       echarts:
         specifier: ^5.6.0
         version: 5.6.0
-      lucide-vue-next:
-        specifier: ^0.486.0
-        version: 0.486.0(vue@3.5.13(typescript@5.7.3))
       pnpm:
         specifier: ^10.7.0
         version: 10.7.0
       vite-plugin-eslint:
         specifier: ^1.8.1
-        version: 1.8.1(eslint@9.27.0(jiti@2.4.2))(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.30.1))
+        version: 1.8.1(eslint@9.27.0(jiti@2.4.2))(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(less@4.4.0)(lightningcss@1.30.1))
       vite-plugin-swc-transform:
         specifier: ^1.1.0
-        version: 1.1.0(rollup@4.38.0)(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.30.1))
+        version: 1.1.0(rollup@4.38.0)(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(less@4.4.0)(lightningcss@1.30.1))
       vue:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.7.3)
@@ -62,13 +62,19 @@ importers:
         version: 22.15.19
       '@vitejs/plugin-vue':
         specifier: ^5.2.1
-        version: 5.2.3(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.30.1))(vue@3.5.13(typescript@5.7.3))
+        version: 5.2.3(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(less@4.4.0)(lightningcss@1.30.1))(vue@3.5.13(typescript@5.7.3))
       '@vue/tsconfig':
         specifier: ^0.7.0
         version: 0.7.0(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.3)
+      less:
+        specifier: ^4.4.0
+        version: 4.4.0
+      lucide-vue-next:
+        specifier: ^0.486.0
+        version: 0.486.0(vue@3.5.13(typescript@5.7.3))
       postcss:
         specifier: ^8.5.3
         version: 8.5.3
@@ -80,7 +86,10 @@ importers:
         version: 5.7.3
       vite:
         specifier: ^6.2.0
-        version: 6.2.3(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.30.1)
+        version: 6.2.3(@types/node@22.15.19)(jiti@2.4.2)(less@4.4.0)(lightningcss@1.30.1)
+      vue-jsx-runtime:
+        specifier: ^0.1.0
+        version: 0.1.0(vue@3.5.13(typescript@5.7.3))
       vue-tsc:
         specifier: ^2.2.4
         version: 2.2.8(typescript@5.7.3)
@@ -1007,6 +1016,9 @@ packages:
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==, tarball: https://nexus3.bilibili.co/repository/npm-public/convert-source-map/-/convert-source-map-2.0.0.tgz}
 
+  copy-anything@2.0.6:
+    resolution: {integrity: sha512-1j20GZTsvKNkc4BY3NpMOM8tt///wY3FpIzozTOFO2ffuZcV61nojHXVKIy3WM+7ADCy5FVhdZYHYDdgTU0yJw==, tarball: https://nexus3.bilibili.co/repository/npm-public/copy-anything/-/copy-anything-2.0.6.tgz}
+
   core-js@3.41.0:
     resolution: {integrity: sha512-SJ4/EHwS36QMJd6h/Rg+GyR4A5xE0FSI3eZ+iBVpfqf1x0eTSg1smWLHrA+2jQThZSh97fmSgFSU8B61nxosxA==, tarball: https://nexus3.bilibili.co/repository/npm-public/core-js/-/core-js-3.41.0.tgz}
 
@@ -1071,6 +1083,10 @@ packages:
   entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==, tarball: https://nexus3.bilibili.co/repository/npm-public/entities/-/entities-4.5.0.tgz}
     engines: {node: '>=0.12'}
+
+  errno@0.1.8:
+    resolution: {integrity: sha512-dJ6oBr5SQ1VSd9qkk7ByRgb/1SH4JZjCHSW/mr63/QcXO9zLVxvJ6Oy13nio03rxpSnVDDjFor75SjVeZWPW/A==, tarball: https://nexus3.bilibili.co/repository/npm-public/errno/-/errno-0.1.8.tgz}
+    hasBin: true
 
   es-define-property@1.0.1:
     resolution: {integrity: sha512-e3nRfgfUZ4rNGL232gUgX06QNyyez04KdjFrF+LTRoOXmrOgFKDg4BCdsjW8EnT69eqdYGmRpJwiPVYNrCaW3g==, tarball: https://nexus3.bilibili.co/repository/npm-public/es-define-property/-/es-define-property-1.0.1.tgz}
@@ -1249,9 +1265,18 @@ packages:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==, tarball: https://nexus3.bilibili.co/repository/npm-public/he/-/he-1.2.0.tgz}
     hasBin: true
 
+  iconv-lite@0.6.3:
+    resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==, tarball: https://nexus3.bilibili.co/repository/npm-public/iconv-lite/-/iconv-lite-0.6.3.tgz}
+    engines: {node: '>=0.10.0'}
+
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==, tarball: https://nexus3.bilibili.co/repository/npm-public/ignore/-/ignore-5.3.2.tgz}
     engines: {node: '>= 4'}
+
+  image-size@0.5.5:
+    resolution: {integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==, tarball: https://nexus3.bilibili.co/repository/npm-public/image-size/-/image-size-0.5.5.tgz}
+    engines: {node: '>=0.10.0'}
+    hasBin: true
 
   import-fresh@3.3.1:
     resolution: {integrity: sha512-TR3KfrTZTYLPB6jUjfx6MF9WcWrHL9su5TObK4ZkYgBdWKPOFoSoQIdEuTuR82pmtxH2spWG9h6etwfr1pLBqQ==, tarball: https://nexus3.bilibili.co/repository/npm-public/import-fresh/-/import-fresh-3.3.1.tgz}
@@ -1272,6 +1297,9 @@ packages:
   is-plain-object@3.0.1:
     resolution: {integrity: sha512-Xnpx182SBMrr/aBik8y+GuR4U1L9FqMSojwDQwPMmxyC6bvEqly9UBCxhauBF5vNh2gwWJNX6oDV7O+OM4z34g==, tarball: https://nexus3.bilibili.co/repository/npm-public/is-plain-object/-/is-plain-object-3.0.1.tgz}
     engines: {node: '>=0.10.0'}
+
+  is-what@3.14.1:
+    resolution: {integrity: sha512-sNxgpk9793nzSs7bA6JQJGeIuRBQhAaNGG77kzYQgMkrID+lS6SlK07K5LaptscDlSaIgH+GPFzf+d75FVxozA==, tarball: https://nexus3.bilibili.co/repository/npm-public/is-what/-/is-what-3.14.1.tgz}
 
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==, tarball: https://nexus3.bilibili.co/repository/npm-public/isexe/-/isexe-2.0.0.tgz}
@@ -1308,6 +1336,11 @@ packages:
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==, tarball: https://nexus3.bilibili.co/repository/npm-public/keyv/-/keyv-4.5.4.tgz}
+
+  less@4.4.0:
+    resolution: {integrity: sha512-kdTwsyRuncDfjEs0DlRILWNvxhDG/Zij4YLO4TMJgDLW+8OzpfkdPnRgrsRuY1o+oaxJGWsps5f/RVBgGmmN0w==, tarball: https://nexus3.bilibili.co/repository/npm-public/less/-/less-4.4.0.tgz}
+    engines: {node: '>=14'}
+    hasBin: true
 
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==, tarball: https://nexus3.bilibili.co/repository/npm-public/levn/-/levn-0.4.1.tgz}
@@ -1409,6 +1442,10 @@ packages:
   magic-string@0.30.17:
     resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==, tarball: https://nexus3.bilibili.co/repository/npm-public/magic-string/-/magic-string-0.30.17.tgz}
 
+  make-dir@2.1.0:
+    resolution: {integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==, tarball: https://nexus3.bilibili.co/repository/npm-public/make-dir/-/make-dir-2.1.0.tgz}
+    engines: {node: '>=6'}
+
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==, tarball: https://nexus3.bilibili.co/repository/npm-public/math-intrinsics/-/math-intrinsics-1.1.0.tgz}
     engines: {node: '>= 0.4'}
@@ -1420,6 +1457,11 @@ packages:
   mime-types@2.1.35:
     resolution: {integrity: sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==, tarball: https://nexus3.bilibili.co/repository/npm-public/mime-types/-/mime-types-2.1.35.tgz}
     engines: {node: '>= 0.6'}
+
+  mime@1.6.0:
+    resolution: {integrity: sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==, tarball: https://nexus3.bilibili.co/repository/npm-public/mime/-/mime-1.6.0.tgz}
+    engines: {node: '>=4'}
+    hasBin: true
 
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==, tarball: https://nexus3.bilibili.co/repository/npm-public/minimatch/-/minimatch-3.1.2.tgz}
@@ -1458,6 +1500,11 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==, tarball: https://nexus3.bilibili.co/repository/npm-public/natural-compare/-/natural-compare-1.4.0.tgz}
 
+  needle@3.3.1:
+    resolution: {integrity: sha512-6k0YULvhpw+RoLNiQCRKOl09Rv1dPLr8hHnVjHqdolKwDrdNyk+Hmrthi4lIGPPz3r39dLx0hsF5s40sZ3Us4Q==, tarball: https://nexus3.bilibili.co/repository/npm-public/needle/-/needle-3.3.1.tgz}
+    engines: {node: '>= 4.4.x'}
+    hasBin: true
+
   node-releases@2.0.19:
     resolution: {integrity: sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==, tarball: https://nexus3.bilibili.co/repository/npm-public/node-releases/-/node-releases-2.0.19.tgz}
 
@@ -1481,6 +1528,10 @@ packages:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==, tarball: https://nexus3.bilibili.co/repository/npm-public/parent-module/-/parent-module-1.0.1.tgz}
     engines: {node: '>=6'}
 
+  parse-node-version@1.0.1:
+    resolution: {integrity: sha512-3YHlOa/JgH6Mnpr05jP9eDG254US9ek25LyIxZlDItp2iJtwyaXQb57lBYLdT3MowkUFYEV2XXNAYIPlESvJlA==, tarball: https://nexus3.bilibili.co/repository/npm-public/parse-node-version/-/parse-node-version-1.0.1.tgz}
+    engines: {node: '>= 0.10'}
+
   path-browserify@1.0.1:
     resolution: {integrity: sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==, tarball: https://nexus3.bilibili.co/repository/npm-public/path-browserify/-/path-browserify-1.0.1.tgz}
 
@@ -1503,6 +1554,10 @@ packages:
     resolution: {integrity: sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==, tarball: https://nexus3.bilibili.co/repository/npm-public/picomatch/-/picomatch-4.0.2.tgz}
     engines: {node: '>=12'}
 
+  pify@4.0.1:
+    resolution: {integrity: sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==, tarball: https://nexus3.bilibili.co/repository/npm-public/pify/-/pify-4.0.1.tgz}
+    engines: {node: '>=6'}
+
   pnpm@10.7.0:
     resolution: {integrity: sha512-a4Za1LYqHZhCth1nSjk5A7hx2SRJVPZSuIQsK1U8chdrJ49kxGPlLUD/+KujhcI1yMns9cx95P14uLttSWM6tg==, tarball: https://nexus3.bilibili.co/repository/npm-public/pnpm/-/pnpm-10.7.0.tgz}
     engines: {node: '>=18.12'}
@@ -1521,6 +1576,9 @@ packages:
 
   proxy-from-env@1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==, tarball: https://nexus3.bilibili.co/repository/npm-public/proxy-from-env/-/proxy-from-env-1.1.0.tgz}
+
+  prr@1.0.1:
+    resolution: {integrity: sha512-yPw4Sng1gWghHQWj0B3ZggWUm4qVbPwPFcRG8KyxiU7J2OHFSoEHKS+EZ3fv5l1t9CyCiop6l/ZYeWbrgoQejw==, tarball: https://nexus3.bilibili.co/repository/npm-public/prr/-/prr-1.0.1.tgz}
 
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==, tarball: https://nexus3.bilibili.co/repository/npm-public/punycode/-/punycode-2.3.1.tgz}
@@ -1546,8 +1604,18 @@ packages:
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
+  safer-buffer@2.1.2:
+    resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==, tarball: https://nexus3.bilibili.co/repository/npm-public/safer-buffer/-/safer-buffer-2.1.2.tgz}
+
+  sax@1.4.1:
+    resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==, tarball: https://nexus3.bilibili.co/repository/npm-public/sax/-/sax-1.4.1.tgz}
+
   scroll-into-view-if-needed@2.2.31:
     resolution: {integrity: sha512-dGCXy99wZQivjmjIqihaBQNjryrz5rueJY7eHfTdyWEiR4ttYpsajb14rn9s5d4DY4EcY6+4+U/maARBXJedkA==, tarball: https://nexus3.bilibili.co/repository/npm-public/scroll-into-view-if-needed/-/scroll-into-view-if-needed-2.2.31.tgz}
+
+  semver@5.7.2:
+    resolution: {integrity: sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==, tarball: https://nexus3.bilibili.co/repository/npm-public/semver/-/semver-5.7.2.tgz}
+    hasBin: true
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==, tarball: https://nexus3.bilibili.co/repository/npm-public/semver/-/semver-6.3.1.tgz}
@@ -1566,6 +1634,10 @@ packages:
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==, tarball: https://nexus3.bilibili.co/repository/npm-public/source-map-js/-/source-map-js-1.2.1.tgz}
+    engines: {node: '>=0.10.0'}
+
+  source-map@0.6.1:
+    resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==, tarball: https://nexus3.bilibili.co/repository/npm-public/source-map/-/source-map-0.6.1.tgz}
     engines: {node: '>=0.10.0'}
 
   ssf@0.11.2:
@@ -1697,6 +1769,11 @@ packages:
     peerDependenciesMeta:
       '@vue/runtime-core':
         optional: true
+
+  vue-jsx-runtime@0.1.0:
+    resolution: {integrity: sha512-gISr2PorSYKoiUk1Y0E20BrRC1rAiVTQNKLZZYigKFY0HEC9VpUq7nrI7wgXe1DzhsjyWNIpcuvLsiHTi5yBXw==, tarball: https://nexus3.bilibili.co/repository/npm-public/vue-jsx-runtime/-/vue-jsx-runtime-0.1.0.tgz}
+    peerDependencies:
+      vue: '3'
 
   vue-router@4.5.1:
     resolution: {integrity: sha512-ogAF3P97NPm8fJsE4by9dwSYtDwXIY1nFY9T6DyQnGHd1E2Da94w9JIolpe42LJGIl0DwOHBi8TcRPlPGwbTtw==, tarball: https://nexus3.bilibili.co/repository/npm-public/vue-router/-/vue-router-4.5.1.tgz}
@@ -2330,12 +2407,12 @@ snapshots:
       postcss: 8.5.3
       tailwindcss: 4.1.7
 
-  '@tailwindcss/vite@4.1.7(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.30.1))':
+  '@tailwindcss/vite@4.1.7(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(less@4.4.0)(lightningcss@1.30.1))':
     dependencies:
       '@tailwindcss/node': 4.1.7
       '@tailwindcss/oxide': 4.1.7
       tailwindcss: 4.1.7
-      vite: 6.2.3(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.30.1)
+      vite: 6.2.3(@types/node@22.15.19)(jiti@2.4.2)(less@4.4.0)(lightningcss@1.30.1)
 
   '@types/eslint@8.56.12':
     dependencies:
@@ -2350,19 +2427,19 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
-  '@vitejs/plugin-vue-jsx@4.1.2(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.30.1))(vue@3.5.13(typescript@5.7.3))':
+  '@vitejs/plugin-vue-jsx@4.1.2(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(less@4.4.0)(lightningcss@1.30.1))(vue@3.5.13(typescript@5.7.3))':
     dependencies:
       '@babel/core': 7.27.1
       '@babel/plugin-transform-typescript': 7.27.1(@babel/core@7.27.1)
       '@vue/babel-plugin-jsx': 1.4.0(@babel/core@7.27.1)
-      vite: 6.2.3(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.30.1)
+      vite: 6.2.3(@types/node@22.15.19)(jiti@2.4.2)(less@4.4.0)(lightningcss@1.30.1)
       vue: 3.5.13(typescript@5.7.3)
     transitivePeerDependencies:
       - supports-color
 
-  '@vitejs/plugin-vue@5.2.3(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.30.1))(vue@3.5.13(typescript@5.7.3))':
+  '@vitejs/plugin-vue@5.2.3(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(less@4.4.0)(lightningcss@1.30.1))(vue@3.5.13(typescript@5.7.3))':
     dependencies:
-      vite: 6.2.3(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.30.1)
+      vite: 6.2.3(@types/node@22.15.19)(jiti@2.4.2)(less@4.4.0)(lightningcss@1.30.1)
       vue: 3.5.13(typescript@5.7.3)
 
   '@volar/language-core@2.4.12':
@@ -2615,6 +2692,10 @@ snapshots:
 
   convert-source-map@2.0.0: {}
 
+  copy-anything@2.0.6:
+    dependencies:
+      is-what: 3.14.1
+
   core-js@3.41.0: {}
 
   crc-32@1.2.2: {}
@@ -2664,6 +2745,11 @@ snapshots:
       tapable: 2.2.1
 
   entities@4.5.0: {}
+
+  errno@0.1.8:
+    dependencies:
+      prr: 1.0.1
+    optional: true
 
   es-define-property@1.0.1: {}
 
@@ -2869,7 +2955,15 @@ snapshots:
 
   he@1.2.0: {}
 
+  iconv-lite@0.6.3:
+    dependencies:
+      safer-buffer: 2.1.2
+    optional: true
+
   ignore@5.3.2: {}
+
+  image-size@0.5.5:
+    optional: true
 
   import-fresh@3.3.1:
     dependencies:
@@ -2885,6 +2979,8 @@ snapshots:
       is-extglob: 2.1.1
 
   is-plain-object@3.0.1: {}
+
+  is-what@3.14.1: {}
 
   isexe@2.0.0: {}
 
@@ -2909,6 +3005,20 @@ snapshots:
   keyv@4.5.4:
     dependencies:
       json-buffer: 3.0.1
+
+  less@4.4.0:
+    dependencies:
+      copy-anything: 2.0.6
+      parse-node-version: 1.0.1
+      tslib: 2.3.0
+    optionalDependencies:
+      errno: 0.1.8
+      graceful-fs: 4.2.11
+      image-size: 0.5.5
+      make-dir: 2.1.0
+      mime: 1.6.0
+      needle: 3.3.1
+      source-map: 0.6.1
 
   levn@0.4.1:
     dependencies:
@@ -2986,6 +3096,12 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  make-dir@2.1.0:
+    dependencies:
+      pify: 4.0.1
+      semver: 5.7.2
+    optional: true
+
   math-intrinsics@1.1.0: {}
 
   mime-db@1.52.0: {}
@@ -2993,6 +3109,9 @@ snapshots:
   mime-types@2.1.35:
     dependencies:
       mime-db: 1.52.0
+
+  mime@1.6.0:
+    optional: true
 
   minimatch@3.1.2:
     dependencies:
@@ -3020,6 +3139,12 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
+  needle@3.3.1:
+    dependencies:
+      iconv-lite: 0.6.3
+      sax: 1.4.1
+    optional: true
+
   node-releases@2.0.19: {}
 
   normalize-range@0.1.2: {}
@@ -3045,6 +3170,8 @@ snapshots:
     dependencies:
       callsites: 3.1.0
 
+  parse-node-version@1.0.1: {}
+
   path-browserify@1.0.1: {}
 
   path-exists@4.0.0: {}
@@ -3056,6 +3183,9 @@ snapshots:
   picomatch@2.3.1: {}
 
   picomatch@4.0.2: {}
+
+  pify@4.0.1:
+    optional: true
 
   pnpm@10.7.0: {}
 
@@ -3070,6 +3200,9 @@ snapshots:
   prelude-ls@1.2.1: {}
 
   proxy-from-env@1.1.0: {}
+
+  prr@1.0.1:
+    optional: true
 
   punycode@2.3.1: {}
 
@@ -3109,9 +3242,18 @@ snapshots:
       '@rollup/rollup-win32-x64-msvc': 4.38.0
       fsevents: 2.3.3
 
+  safer-buffer@2.1.2:
+    optional: true
+
+  sax@1.4.1:
+    optional: true
+
   scroll-into-view-if-needed@2.2.31:
     dependencies:
       compute-scroll-into-view: 1.0.20
+
+  semver@5.7.2:
+    optional: true
 
   semver@6.3.1: {}
 
@@ -3124,6 +3266,9 @@ snapshots:
   shebang-regex@3.0.0: {}
 
   source-map-js@1.2.1: {}
+
+  source-map@0.6.1:
+    optional: true
 
   ssf@0.11.2:
     dependencies:
@@ -3172,24 +3317,24 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  vite-plugin-eslint@1.8.1(eslint@9.27.0(jiti@2.4.2))(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.30.1)):
+  vite-plugin-eslint@1.8.1(eslint@9.27.0(jiti@2.4.2))(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(less@4.4.0)(lightningcss@1.30.1)):
     dependencies:
       '@rollup/pluginutils': 4.2.1
       '@types/eslint': 8.56.12
       eslint: 9.27.0(jiti@2.4.2)
       rollup: 2.79.2
-      vite: 6.2.3(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.30.1)
+      vite: 6.2.3(@types/node@22.15.19)(jiti@2.4.2)(less@4.4.0)(lightningcss@1.30.1)
 
-  vite-plugin-swc-transform@1.1.0(rollup@4.38.0)(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.30.1)):
+  vite-plugin-swc-transform@1.1.0(rollup@4.38.0)(vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(less@4.4.0)(lightningcss@1.30.1)):
     dependencies:
       '@rollup/pluginutils': 5.1.4(rollup@4.38.0)
       '@swc/core': 1.11.24
-      vite: 6.2.3(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.30.1)
+      vite: 6.2.3(@types/node@22.15.19)(jiti@2.4.2)(less@4.4.0)(lightningcss@1.30.1)
     transitivePeerDependencies:
       - '@swc/helpers'
       - rollup
 
-  vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(lightningcss@1.30.1):
+  vite@6.2.3(@types/node@22.15.19)(jiti@2.4.2)(less@4.4.0)(lightningcss@1.30.1):
     dependencies:
       esbuild: 0.25.2
       postcss: 8.5.3
@@ -3198,6 +3343,7 @@ snapshots:
       '@types/node': 22.15.19
       fsevents: 2.3.3
       jiti: 2.4.2
+      less: 4.4.0
       lightningcss: 1.30.1
 
   vscode-uri@3.1.0: {}
@@ -3215,6 +3361,10 @@ snapshots:
       '@vue/runtime-core': 3.5.13
     transitivePeerDependencies:
       - '@vue/composition-api'
+
+  vue-jsx-runtime@0.1.0(vue@3.5.13(typescript@5.7.3)):
+    dependencies:
+      vue: 3.5.13(typescript@5.7.3)
 
   vue-router@4.5.1(vue@3.5.13(typescript@5.7.3)):
     dependencies:

@@ -1,26 +1,33 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import type { RouteRecordRaw } from 'vue-router';
+import routeConfig from '../pages/index';
+import BiliLayout from '../components/BiliLayout.vue';
+export type menuItem = {
+  label: string;
+  key: string;
+  icon?: any;
+  type?: string;
+  redirct?: string;
+};
+export type routeItem = {
+  menu: menuItem[];
+  route: RouteRecordRaw;
+}[];
+const routes: any[] = [];
+routes.push(...routeConfig.map((i) => i.route));
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/step',
-      name: 'step',
-      component: () => import('../views/StepContainer.vue')
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/AboutView.vue')
-    }
-  ]
-})
+const initRouter = () =>
+  createRouter({
+    history: createWebHistory('/'),
+    routes: [
+      {
+        path: '/',
+        component: BiliLayout,
+        name: 'BiliLayout',
+        children: routes,
+      },
+    ],
+  });
 
-export default router
+export default initRouter;
 
