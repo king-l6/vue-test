@@ -14,7 +14,7 @@ export type routeItem = {
   route: RouteRecordRaw;
 }[];
 const routes: any[] = [];
-routes.push(...routeConfig.map((i) => i.route));
+routes.push(...routeConfig.map((i: { route: any; }) => i.route));
 
 const initRouter = () =>
   createRouter({

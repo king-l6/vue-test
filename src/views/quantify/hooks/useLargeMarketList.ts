@@ -12,15 +12,16 @@ const useLargeMarketList = () => {
     loading: false,
   });
   const previousWorkdays = getPreviousWorkdays(50);
-  const initData = () => {
+  const initData = async () => {
     const result: any[] = [];
-    previousWorkdays.forEach(async (date) => {
+    
+    // 使用 Promise.all 等待所有异步操作完成
+    await Promise.all(previousWorkdays.map(async (date) => {
       const { data } = await getLargeMarketList({
         date,
         url: '/qs_svc/v1/stock_start_rank_f',
         version: 2,
       });
-      // result.push(res);
       if (data?.result?.total_count) {
         data.result.records.forEach((item: any) => {
           result.push({
@@ -31,9 +32,10 @@ const useLargeMarketList = () => {
           });
         });
       }
-    });
+    }));
     state.value.data = result;
   };
+  
   return {
     state,
     initData,
