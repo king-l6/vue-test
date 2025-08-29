@@ -31,6 +31,20 @@ const config: routeItem = [
       component: () => import('./pages/FiveStars.vue'),
     },
   },
+  {
+    menu: [
+      {
+        label: '全部',
+        key: '/all',
+        icon: <LayoutList size={14} />,
+      },
+    ],
+    route: {
+      path: '/all',
+      name: 'Allquantify',
+      component: () => import('./pages/index.vue'),
+    },
+  },
 ];
 
 export default config;

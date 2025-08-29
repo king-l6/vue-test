@@ -4,6 +4,7 @@
     <Table
       rowKey="id"
       size="small"
+      :scroll="{ y: 600 }"
       :pagination="{
         pageSize: 100,
       }"
