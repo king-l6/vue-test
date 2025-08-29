@@ -31,7 +31,7 @@ export class LargeMarket {
 
   //当日涨跌幅
   get changeRate() {
-    return this.change_rate.toFixed(2)+'%';
+    return this.change_rate.toFixed(2) + '%';
   }
 
   // 收盘价
@@ -47,7 +47,12 @@ export class LargeMarket {
   }
   // 开盘入涨跌幅
   get closeOpenPrice() {
-    return (((this.price - this.open_price) / this.open_price) * 100).toFixed(2) + '%';
+    console.log(this.price, this.open_price, this.price - this.open_price);
+
+    return (
+      (((this.price - this.open_price) / this.open_price) * 100).toFixed(2) +
+      '%'
+    );
   }
 
   // 代码
@@ -55,6 +60,11 @@ export class LargeMarket {
   stock_code: string = '';
   get stokcCode() {
     return (this.stock_code || '').split('.')[0];
+  }
+
+  total_score: number = 0;
+  get totalScore() {
+    return this.total_score;
   }
 }
 

@@ -34,6 +34,20 @@ const config: routeItem = [
   {
     menu: [
       {
+        label: '高分量化',
+        key: '/highScore',
+        icon: <LayoutList size={14} />,
+      },
+    ],
+    route: {
+      path: '/highScore',
+      name: 'HighScore',
+      component: () => import('./pages/HighScore.vue'),
+    },
+  },
+  {
+    menu: [
+      {
         label: '全部',
         key: '/all',
         icon: <LayoutList size={14} />,

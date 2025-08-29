@@ -9,3 +9,8 @@ export const getFiveStarsList = (params: any) =>
   axios.get('https://prod-web.cloudgn.com/qs_svc/v1/stock_start_rank', {
     params,
   });
+
+export const getHighScoreList = (params: any) =>
+  axios.get('https://prod-web.cloudgn.com/qs_svc/v1/stock_start_block_score', {
+    params,
+  });
