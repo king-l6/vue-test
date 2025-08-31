@@ -85,8 +85,6 @@ const useFiveStarsList = () => {
         };
       },
     );
-
-    console.log(state.value.data, starsList.value);
   };
 
   return {

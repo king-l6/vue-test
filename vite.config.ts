@@ -8,7 +8,7 @@ import { defineConfig } from 'vite';
 import eslint from 'vite-plugin-eslint';
 import swc from 'vite-plugin-swc-transform';
 import tailwindcss from '@tailwindcss/vite'
-const target = 'https://shjd-inner-boss.bilibili.co';
+const target = 'http://localhost:3000';
 // const target = 'http://uat-ai-fe.bilibili.co';
 
 // https://vitejs.dev/config/
@@ -46,15 +46,15 @@ export default defineConfig({
   },
   server: {
     port: 8085,
-    allowedHosts:['local.bilibili.co'],
+    allowedHosts:['local.bilibili.co', 'localhost'],
     proxy: {
-      '/ai_efficiency': {
+      '/quantify/': {
         target,
         changeOrigin: true,
-        bypass(req) {
-          req.headers.Referer = target;
-          req.headers.Origin = target;
-        },
+        // bypass(req) {
+        //   req.headers.Referer = target;
+        //   req.headers.Origin = target;
+        // },
       },
     },
   },

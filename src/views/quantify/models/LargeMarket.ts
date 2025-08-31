@@ -1,4 +1,4 @@
-import { Expose } from 'class-transformer';
+import { Expose,Type } from 'class-transformer';
 import dayjs from 'dayjs';
 
 export class LargeMarket {
@@ -47,8 +47,6 @@ export class LargeMarket {
   }
   // 开盘入涨跌幅
   get closeOpenPrice() {
-    console.log(this.price, this.open_price, this.price - this.open_price);
-
     return (
       (((this.price - this.open_price) / this.open_price) * 100).toFixed(2) +
       '%'
@@ -67,4 +65,14 @@ export class LargeMarket {
     return this.total_score;
   }
 }
+
+class LargeMarketList  {
+  @Type(() => LargeMarket)
+  @Expose({ name: 'list' })
+  items: LargeMarket[] = [];
+
+  total: number = 0;
+}
+
+export default LargeMarketList
 

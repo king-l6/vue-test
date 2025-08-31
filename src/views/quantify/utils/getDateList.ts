@@ -27,8 +27,3 @@ export const getPreviousWorkdays = (count: number) => {
 
   return result;
 };
-
-// 获取前50个工作日
-const previousWorkdays = getPreviousWorkdays(50);
-console.log(previousWorkdays);
-

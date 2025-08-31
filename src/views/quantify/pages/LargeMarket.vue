@@ -17,13 +17,10 @@
 <script lang="ts" setup>
 import { computed, onMounted } from 'vue';
 import { Table } from 'ant-design-vue';
-import { getPreviousWorkdays } from '../utils/getDateList';
 import useLargeMarketList from '../hooks/useLargeMarketList';
 
 const { state, initData } = useLargeMarketList();
-const previousWorkdays = getPreviousWorkdays(50);
 
-console.log(previousWorkdays);
 
 onMounted(async () => {
   await initData();

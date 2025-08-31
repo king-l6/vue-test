@@ -58,13 +58,11 @@ onMounted(async () => {
   });
   menusData.value.push(createGroup('量化'));
   menusData.value.push(...routeConfig.map((i: { menu: any[]; }) => i.menu[0]));
-  console.log(menusData.value);
 });
 const handleSetTitle = (key: string) => {
   const current = menusData.value.find((i) => i.key && key.includes(i.key)) || {
     label: '',
   };
-  console.log(key, current);
   const currentTitle = ['/quantify'].includes(key) ? '量化' : current.label;
   document.title = `${current?.label} - ${currentTitle}`;
   selectedKeys.value = menusData.value
@@ -72,8 +70,6 @@ const handleSetTitle = (key: string) => {
     .map((i) => i.key);
 };
 const handleClick = (e: any) => {
-  console.log(e);
-
   handleSetTitle(e.key);
   router.push({ path: e.key as string });
 };

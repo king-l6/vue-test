@@ -21,15 +21,10 @@
 
 <script lang="tsx" setup>
 import { computed, onMounted, ref } from 'vue';
-import { Form, FormItem, Input, Select, Table, Tag } from 'ant-design-vue';
-import { getPreviousWorkdays } from '../utils/getDateList';
+import { Form, FormItem,  Select, Table, Tag } from 'ant-design-vue';
 import useFiveStarsList from '../hooks/useFiveStarsList';
 
 const { state, starsList, initData } = useFiveStarsList();
-const previousWorkdays = getPreviousWorkdays(50);
-
-console.log(previousWorkdays);
-
 onMounted(async () => {
   await initData();
 });
@@ -66,7 +61,7 @@ const configTable = computed(
         customRender: ({ record }: { record: any }) => (
           <div
             class={
-              record.closeOpenPrice.startsWith('-')
+              (record.closeOpenPrice || '').startsWith('-')
                 ? 'text-white bg-green-700'
                 : 'text-white bg-red-700'
             }
@@ -86,8 +81,8 @@ const configTable = computed(
         customRender: ({ record }: { record: any }) => (
           <div
             class={
-              record.changeRate.startsWith('-')
-                ? 'text-white bg-green-300'
+              (record.closeOpenPrice || '').startsWith('-')
+                  ? 'text-white bg-green-300'
                 : 'text-white bg-red-300'
             }
           >
@@ -138,7 +133,7 @@ const configTable = computed(
         width: 120,
         filters: [
           {
-            text: '主板',
+            text: '11110',
             value: '11110',
           },
         ],
