@@ -1,24 +1,15 @@
 <template>
   <div>
-    <h3 class="flex text-lg font-semibold mb-2 ml-2 mt-5">五星量化</h3>
-    <div class="flex">
-      <Form :model="formState" :wrapper-col="{ span: 6 }" class="w-[600px]">
-        <FormItem label="Stars" name="Stars">
-          <Select v-model:value="formState.stars" :options="starsOptions" />
-        </FormItem>
-      </Form>
-      <div class="grow"></div>
-      <Button
-        @click="
-          () => {
-            (isFirst = !isFirst), initData();
-          }
-        "
-        type="primary"
-        class="mr-2"
-        >切换</Button
-      >
-    </div>
+    <h3 class="flex text-lg font-semibold mb-2 ml-2 mt-5">量化分值排名</h3>
+    <Form :model="params" :wrapper-col="{ span: 6 }">
+      <FormItem label="日期" name="trade_date">
+        <DatePicker
+          v-model:value="params.trade_date"
+          value-format="YYYY-MM-DD" 
+          @change="() => initData()"
+        />
+      </FormItem>
+    </Form>
     <Table
       rowKey="id"
       :scroll="{ y: 600 }"
@@ -33,16 +24,14 @@
 </template>
 
 <script lang="tsx" setup>
-import { computed, onMounted, ref } from 'vue';
-import { Button, Form, FormItem, Select, Table, Tag } from 'ant-design-vue';
-import useFiveStarsList from '../hooks/useFiveStarsList';
+import { computed, onMounted } from 'vue';
+import { DatePicker, Form, FormItem, Table, Tag } from 'ant-design-vue';
+import useScoreRankingList from '../hooks/useScoreRankingList';
 
-const { state, isFirst, starsList, initData } = useFiveStarsList();
+const { params, state, starsList, initData } = useScoreRankingList();
+
 onMounted(async () => {
   await initData();
-});
-const formState = ref<any>({
-  stars: '',
 });
 const configTable = computed(
   () =>
@@ -74,7 +63,7 @@ const configTable = computed(
         customRender: ({ record }: { record: any }) => (
           <div
             class={
-              (record.closeOpenPrice || '').startsWith('-')
+              record.closeOpenPrice.startsWith('-')
                 ? 'text-white bg-green-700'
                 : 'text-white bg-red-700'
             }
@@ -94,7 +83,7 @@ const configTable = computed(
         customRender: ({ record }: { record: any }) => (
           <div
             class={
-              (record.closeOpenPrice || '').startsWith('-')
+              record.changeRate.startsWith('-')
                 ? 'text-white bg-green-300'
                 : 'text-white bg-red-300'
             }
@@ -140,19 +129,11 @@ const configTable = computed(
         },
       },
       {
-        title: '五星',
-        dataIndex: 'stars',
-        key: 'stars',
+        title: '量化评分',
+        dataIndex: 'totalScore',
+        key: 'totalScore',
         width: 120,
-        filters: [
-          {
-            text: '11110',
-            value: '11110',
-          },
-        ],
-        onFilter: (value: string, record: any) => record.stars.includes(value),
       },
-
       {
         dataIndex: 'zhanwei',
         width: '30%',

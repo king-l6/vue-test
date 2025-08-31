@@ -1,10 +1,9 @@
 import { ref, type Ref } from 'vue';
-import { getPreviousWorkdays } from '../utils/getDateList';
-import { getLocalFiveStarsList } from '../api';
+import { getLocalScoreRankingList } from '../api';
 import LargeMarketList, { LargeMarket } from '../models/LargeMarket';
 import { plainToInstance } from 'class-transformer';
 
-const useFiveStarsList = () => {
+const useScoreRankingList = () => {
   const starsList = ref<
     {
       star: string;
@@ -13,6 +12,13 @@ const useFiveStarsList = () => {
     }[]
   >([]);
   // const starsCountMap = ref<{ [key: string]: number }>({});
+  const params = ref({
+    max_score: 288,
+    min_score: 0,
+    page_num: 1,
+    page_size: 200,
+    trade_date: undefined,
+  });
 
   const state: Ref<{
     data: LargeMarket[];
@@ -21,20 +27,11 @@ const useFiveStarsList = () => {
     data: [],
     loading: false,
   });
-  const isFirst = ref(false);
-  const previousWorkdays = getPreviousWorkdays(50);
-
   const initData = async () => {
     const result: any[] = [];
 
-    const { data } = await getLocalFiveStarsList({
-      dates: previousWorkdays.join(','),
-    });
-    if (!isFirst.value) {
-      state.value.data = plainToInstance(LargeMarketList, data.data).items;
-    } else {
-      state.value.data = plainToInstance(LargeMarketList, data.data).firstItems;
-    }
+    const { data } = await getLocalScoreRankingList(params.value);
+    state.value.data = plainToInstance(LargeMarketList, data.data).items;
 
     const starsStatsMap = new Map<
       string,
@@ -71,12 +68,12 @@ const useFiveStarsList = () => {
   };
 
   return {
+    params,
     state,
-    isFirst,
     starsList,
     initData,
   };
 };
 
-export default useFiveStarsList;
+export default useScoreRankingList;
 

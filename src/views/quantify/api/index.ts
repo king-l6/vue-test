@@ -20,3 +20,12 @@ export const getLocalFiveStarsList = (params: any) =>
   axios.get('/quantify/stars', {
     params,
   });
+
+export const getLocalHighScoreList = (params: any) =>
+  axios.get('/quantify/highScore', {
+    params,
+  });
+
+export const getLocalScoreRankingList = (params: any) =>
+  axios.post('/quantify/scoreRanking', params);
+

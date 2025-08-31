@@ -48,6 +48,20 @@ const config: routeItem = [
   {
     menu: [
       {
+        label: '量化分值排名',
+        key: '/scoreRanking',
+        icon: <LayoutList size={14} />,
+      },
+    ],
+    route: {
+      path: '/scoreRanking',
+      name: 'ScoreRanking',
+      component: () => import('./pages/ScoreRanking.vue'),
+    },
+  },
+  {
+    menu: [
+      {
         label: '全部',
         key: '/all',
         icon: <LayoutList size={14} />,

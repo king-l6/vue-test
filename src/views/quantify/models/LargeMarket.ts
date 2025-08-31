@@ -71,6 +71,12 @@ class LargeMarketList  {
   @Expose({ name: 'list' })
   items: LargeMarket[] = [];
 
+
+  @Type(() => LargeMarket)
+  @Expose({ name: 'firstMainBoardStock' })
+  firstItems: LargeMarket[] = [];
+  
+
   total: number = 0;
 }
 
