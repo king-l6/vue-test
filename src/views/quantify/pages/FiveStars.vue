@@ -2,7 +2,7 @@
   <div>
     <h3 class="flex text-lg font-semibold mb-2 ml-2 mt-5">五星量化</h3>
     <div class="flex">
-      <Form :model="formState" :wrapper-col="{ span: 6 }" class="w-[600px]">
+      <Form :model="formState" :wrapper-col="{ span: 6 }" class="w-[1000px]">
         <FormItem label="Stars" name="Stars">
           <Select v-model:value="formState.stars" :options="starsOptions" />
         </FormItem>
@@ -19,6 +19,7 @@
         >切换</Button
       >
     </div>
+    <LineChart :chartData="state.data" />
     <Table
       rowKey="id"
       :scroll="{ y: 600 }"
@@ -36,7 +37,7 @@
 import { computed, onMounted, ref } from 'vue';
 import { Button, Form, FormItem, Select, Table, Tag } from 'ant-design-vue';
 import useFiveStarsList from '../hooks/useFiveStarsList';
-
+import LineChart from '../components/LineChart.vue';
 const { state, isFirst, starsList, initData } = useFiveStarsList();
 onMounted(async () => {
   await initData();

@@ -25,7 +25,6 @@ const useFiveStarsList = () => {
   const previousWorkdays = getPreviousWorkdays(50);
 
   const initData = async () => {
-    const result: any[] = [];
 
     const { data } = await getLocalFiveStarsList({
       dates: previousWorkdays.join(','),
@@ -40,7 +39,8 @@ const useFiveStarsList = () => {
       string,
       { count: number; positiveCount: number }
     >();
-    result.forEach((item) => {
+    
+    state.value.data.forEach((item) => {
       const star = item.stars;
       const currentStats = starsStatsMap.get(star) || {
         count: 0,

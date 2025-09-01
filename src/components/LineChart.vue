@@ -55,7 +55,7 @@ const option = ref({
     type: 'value',
     scale: true,
     axisLabel: {
-      formatter: function(value) {
+      formatter: function(value: number) {
         if (value >= 1e12) {
           return (value / 1e12).toFixed(1) + 'T';
         } else if (value >= 1e9) {
