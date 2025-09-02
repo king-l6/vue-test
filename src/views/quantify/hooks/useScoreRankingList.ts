@@ -2,6 +2,7 @@ import { ref, type Ref } from 'vue';
 import { getLocalScoreRankingList } from '../api';
 import LargeMarketList, { LargeMarket } from '../models/LargeMarket';
 import { plainToInstance } from 'class-transformer';
+import dayjs from 'dayjs';
 
 const useScoreRankingList = () => {
   const starsList = ref<
@@ -17,7 +18,7 @@ const useScoreRankingList = () => {
     min_score: 0,
     page_num: 1,
     page_size: 200,
-    trade_date: undefined,
+    trade_date: dayjs().format('YYYY-MM-DD'),
   });
 
   const state: Ref<{

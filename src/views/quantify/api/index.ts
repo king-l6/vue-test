@@ -16,6 +16,11 @@ export const getHighScoreList = (params: any) =>
   });
 
 // 本地服务
+export const getLocalBigMarketList = (params: any) =>
+  axios.get('/quantify/bigMarket', {
+    params,
+  });
+
 export const getLocalFiveStarsList = (params: any) =>
   axios.get('/quantify/stars', {
     params,

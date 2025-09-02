@@ -1,11 +1,12 @@
 <template>
   <div>
     <h3 class="flex text-lg font-semibold mb-2 ml-2 mt-5">高分量化</h3>
-    <Form :model="formState" :wrapper-col="{ span: 6 }">
+    <Form :model="formState" :wrapper-col="{ span: 6 }" class="w-[1000px]">
       <FormItem label="Stars" name="Stars">
         <Select v-model:value="formState.stars" :options="starsOptions" />
       </FormItem>
     </Form>
+
     <Table
       rowKey="id"
       :scroll="{ y: 600 }"
