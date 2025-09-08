@@ -21,7 +21,7 @@ const useFiveStarsList = () => {
     data: [],
     loading: false,
   });
-  const previousWorkdays = getPreviousWorkdays(50);
+  const previousWorkdays = getPreviousWorkdays(85);
 
   const initData = async () => {
     const result: any[] = [];
@@ -30,8 +30,6 @@ const useFiveStarsList = () => {
       dates: previousWorkdays.join(','),
     });
     state.value.data = plainToInstance(LargeMarketList, data.data).items;
-    console.log(state.value.data);
-
     const starsStatsMap = new Map<
       string,
       { count: number; positiveCount: number }

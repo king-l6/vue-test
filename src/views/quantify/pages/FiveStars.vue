@@ -2,9 +2,9 @@
   <div>
     <h3 class="flex text-lg font-semibold mb-2 ml-2 mt-5">五星量化</h3>
     <div class="flex">
-      <Form :model="formState" :wrapper-col="{ span: 6 }" class="w-[1000px]">
-        <FormItem label="Stars" name="Stars">
-          <Select v-model:value="formState.stars" :options="starsOptions" />
+      <Form :model="params" :wrapper-col="{ span: 6 }" class="w-[1000px]">
+        <FormItem label="Stars" name="star">
+          <Select v-model:value="params.stars" :options="starsOptions" allowClear @change="initData"/>
         </FormItem>
       </Form>
       <div class="grow"></div>
@@ -38,12 +38,9 @@ import { computed, onMounted, ref } from 'vue';
 import { Button, Form, FormItem, Select, Table, Tag } from 'ant-design-vue';
 import useFiveStarsList from '../hooks/useFiveStarsList';
 import LineChart from '../components/LineChart.vue';
-const { state, isFirst, starsList, initData } = useFiveStarsList();
+const { state,params, isFirst, starsList, initData } = useFiveStarsList();
 onMounted(async () => {
   await initData();
-});
-const formState = ref<any>({
-  stars: '',
 });
 const configTable = computed(
   () =>

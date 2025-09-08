@@ -21,25 +21,38 @@ const useFiveStarsList = () => {
     data: [],
     loading: false,
   });
+
+  const params = ref({
+    stars: '',
+  });
   const isFirst = ref(false);
-  const previousWorkdays = getPreviousWorkdays(50);
+  const previousWorkdays = getPreviousWorkdays(85);
 
   const initData = async () => {
-
     const { data } = await getLocalFiveStarsList({
       dates: previousWorkdays.join(','),
     });
     if (!isFirst.value) {
-      state.value.data = plainToInstance(LargeMarketList, data.data).items;
+      state.value.data = plainToInstance(
+        LargeMarketList,
+        data.data,
+      ).items.filter((item) =>
+        params.value.stars ? item.stars === params.value.stars : item,
+      );
     } else {
-      state.value.data = plainToInstance(LargeMarketList, data.data).firstItems;
+      state.value.data = plainToInstance(
+        LargeMarketList,
+        data.data,
+      ).firstItems.filter((item) =>
+        params.value.stars ? item.stars === params.value.stars : item,
+      );
     }
 
     const starsStatsMap = new Map<
       string,
       { count: number; positiveCount: number }
     >();
-    
+
     state.value.data.forEach((item) => {
       const star = item.stars;
       const currentStats = starsStatsMap.get(star) || {
@@ -72,6 +85,7 @@ const useFiveStarsList = () => {
 
   return {
     state,
+    params,
     isFirst,
     starsList,
     initData,
