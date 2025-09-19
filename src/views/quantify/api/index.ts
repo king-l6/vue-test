@@ -31,6 +31,11 @@ export const getLocalHighScoreList = (params: any) =>
     params,
   });
 
+  export const getLocalStarScoreOverlapList = (params: any) =>
+    axios.get('/quantify/overlapStocks', {
+      params,
+    });
+
 export const getLocalScoreRankingList = (params: any) =>
   axios.post('/quantify/scoreRanking', params);
 

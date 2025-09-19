@@ -1,10 +1,19 @@
 <template>
   <div>
+    {{ params.totalScore }}
     <h3 class="flex text-lg font-semibold mb-2 ml-2 mt-5">五星量化</h3>
     <div class="flex">
       <Form :model="params" :wrapper-col="{ span: 6 }" class="w-[1000px]">
         <FormItem label="Stars" name="star">
-          <Select v-model:value="params.stars" :options="starsOptions" allowClear @change="initData"/>
+          <Select
+            v-model:value="params.stars"
+            :options="starsOptions"
+            allowClear
+            @change="initData"
+          />
+        </FormItem>
+        <FormItem label="Total Score" name="totalScore">
+          <InputNumber v-model:value="params.totalScore" @change="initData"></InputNumber>
         </FormItem>
       </Form>
       <div class="grow"></div>
@@ -18,6 +27,7 @@
         class="mr-2"
         >切换</Button
       >
+      <Button @click="exportData" type="primary" class="mr-2">导出</Button>
     </div>
     <LineChart :chartData="state.data" />
     <Table
@@ -35,10 +45,11 @@
 
 <script lang="tsx" setup>
 import { computed, onMounted, ref } from 'vue';
-import { Button, Form, FormItem, Select, Table, Tag } from 'ant-design-vue';
+import { Button, Form, FormItem, InputNumber, Select, Table, Tag } from 'ant-design-vue';
 import useFiveStarsList from '../hooks/useFiveStarsList';
 import LineChart from '../components/LineChart.vue';
-const { state,params, isFirst, starsList, initData } = useFiveStarsList();
+import * as XLSX from 'xlsx';
+const { state, params, isFirst, starsList, initData } = useFiveStarsList();
 onMounted(async () => {
   await initData();
 });
@@ -111,14 +122,6 @@ const configTable = computed(
             text: '主板',
             value: 'mainboard',
           },
-          {
-            text: '创业板',
-            value: 'gem',
-          },
-          {
-            text: '其他',
-            value: 'other',
-          },
         ],
         onFilter: (value: string, record: any) => {
           if (value === 'mainboard') {
@@ -126,16 +129,14 @@ const configTable = computed(
               record.stokcCode.startsWith('60') ||
               record.stokcCode.startsWith('00')
             );
-          } else if (value === 'gem') {
-            return record.stokcCode.startsWith('30');
-          } else {
-            return !(
-              record.stokcCode.startsWith('60') ||
-              record.stokcCode.startsWith('00') ||
-              record.stokcCode.startsWith('30')
-            );
           }
         },
+      },
+      {
+        title: '量化评分',
+        dataIndex: 'totalScore',
+        key: 'totalScore',
+        width: 120,
       },
       {
         title: '五星',
@@ -173,6 +174,57 @@ const starsOptions = computed(() =>
     };
   }),
 );
+const exportData = () => {
+  const data = state.value.data
+    .filter(
+      (item) =>
+        item.stokcCode.startsWith('60') || item.stokcCode.startsWith('00'),
+    )
+    .map((item) => ({
+      日期: item.createTime,
+      股票名称: item.stockName,
+      开盘入涨跌幅: item.closeOpenPrice,
+      涨跌幅: item.changeRate,
+      股票代码: item.stokcCode,
+      五星: item.stars,
+    }));
+
+  const ws = XLSX.utils.json_to_sheet(data);
+
+  // Apply conditional formatting for '开盘入涨跌幅' and '涨跌幅'
+  data.forEach((row, index) => {
+    const closeOpenPriceCell = `C${index + 2}`;
+    const changeRateCell = `D${index + 2}`;
+
+    if (row.开盘入涨跌幅 && String(row.开盘入涨跌幅).startsWith('-')) {
+      if (!ws[closeOpenPriceCell]) ws[closeOpenPriceCell] = {};
+      ws[closeOpenPriceCell].s = {
+        fill: { fgColor: { rgb: 'FF00AA00' }, patternType: 'solid' },
+      }; // Green for negative
+    } else if (row.开盘入涨跌幅) {
+      if (!ws[closeOpenPriceCell]) ws[closeOpenPriceCell] = {};
+      ws[closeOpenPriceCell].s = {
+        fill: { fgColor: { rgb: 'FFAA0000' }, patternType: 'solid' },
+      }; // Red for positive
+    }
+
+    if (row.涨跌幅 && String(row.涨跌幅).startsWith('-')) {
+      if (!ws[changeRateCell]) ws[changeRateCell] = {};
+      ws[changeRateCell].s = {
+        fill: { fgColor: { rgb: 'FF00AA00' }, patternType: 'solid' },
+      }; // Green for negative
+    } else if (row.涨跌幅) {
+      if (!ws[changeRateCell]) ws[changeRateCell] = {};
+      ws[changeRateCell].s = {
+        fill: { fgColor: { rgb: 'FFAA0000' }, patternType: 'solid' },
+      }; // Red for positive
+    }
+  });
+
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, '五星量化数据');
+  XLSX.writeFile(wb, '五星量化数据.xlsx');
+};
 </script>
 
 <style scoped>

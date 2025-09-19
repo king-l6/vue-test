@@ -1,10 +1,10 @@
 import { ref, type Ref } from 'vue';
 import { getPreviousWorkdays } from '../utils/getDateList';
-import { getHighScoreList, getLocalHighScoreList } from '../api';
+import { getLocalStarScoreOverlapList } from '../api';
 import LargeMarketList, { LargeMarket } from '../models/LargeMarket';
 import { plainToInstance } from 'class-transformer';
 
-const useFiveStarsList = () => {
+const useStarScoreOverlapList = () => {
   const starsList = ref<
     {
       star: string;
@@ -13,10 +13,7 @@ const useFiveStarsList = () => {
     }[]
   >([]);
   // const starsCountMap = ref<{ [key: string]: number }>({});
-  const params = ref<any>({
-    stars: '',
-    totalScore: 0,
-  });
+
   const state: Ref<{
     data: LargeMarket[];
     loading: boolean;
@@ -24,25 +21,39 @@ const useFiveStarsList = () => {
     data: [],
     loading: false,
   });
+
+  const params = ref({
+    stars: '',
+  });
+  const isFirst = ref(false);
   const previousWorkdays = getPreviousWorkdays(85);
 
   const initData = async () => {
-    const result: any[] = [];
-
-    const { data } = await getLocalHighScoreList({
+    const { data } = await getLocalStarScoreOverlapList({
       dates: previousWorkdays.join(','),
     });
-    state.value.data = plainToInstance(LargeMarketList, data.data).items.filter(
-      (item) =>
-        params.value.totalScore
-          ? item.totalScore >= params.value.totalScore
-          : item,
-    );
+    if (!isFirst.value) {
+      state.value.data = plainToInstance(
+        LargeMarketList,
+        data.data,
+      ).items.filter((item) =>
+        params.value.stars ? item.stars === params.value.stars : item,
+      );
+    } else {
+      state.value.data = plainToInstance(
+        LargeMarketList,
+        data.data,
+      ).firstItems.filter((item) =>
+        params.value.stars ? item.stars === params.value.stars : item,
+      );
+    }
+
     const starsStatsMap = new Map<
       string,
       { count: number; positiveCount: number }
     >();
-    result.forEach((item) => {
+
+    state.value.data.forEach((item) => {
       const star = item.stars;
       const currentStats = starsStatsMap.get(star) || {
         count: 0,
@@ -73,12 +84,13 @@ const useFiveStarsList = () => {
   };
 
   return {
-    params,
     state,
+    params,
+    isFirst,
     starsList,
     initData,
   };
 };
 
-export default useFiveStarsList;
+export default useStarScoreOverlapList;
 

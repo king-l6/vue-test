@@ -59,6 +59,20 @@ const config: routeItem = [
       component: () => import('./pages/ScoreRanking.vue'),
     },
   },
+    {
+    menu: [
+      {
+        label: '（五星-高分）量化重叠',
+        key: '/starScoreOverlap',
+        icon: <LayoutList size={14} />,
+      },
+    ],
+    route: {
+      path: '/starScoreOverlap',
+      name: 'StarScoreOverlap',
+      component: () => import('./pages/StarScoreOverlap.vue'),
+    },
+  },
   {
     menu: [
       {

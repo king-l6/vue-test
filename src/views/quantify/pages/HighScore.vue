@@ -1,11 +1,20 @@
 <template>
   <div>
     <h3 class="flex text-lg font-semibold mb-2 ml-2 mt-5">高分量化</h3>
-    <Form :model="formState" :wrapper-col="{ span: 6 }" class="w-[1000px]">
+    <Form :model="params" :wrapper-col="{ span: 6 }" class="w-[1000px]">
       <FormItem label="Stars" name="Stars">
-        <Select v-model:value="formState.stars" :options="starsOptions" />
+        <Select v-model:value="params.stars" :options="starsOptions" />
+      </FormItem>
+      <FormItem label="Date" name="totalScore">
+        <InputNumber  v-model:value="params.totalScore" @change="initData"></InputNumber>
       </FormItem>
     </Form>
+     <Button
+        @click="exportData"
+        type="primary"
+        class="mr-2"
+        >导出</Button
+      >
 
     <Table
       rowKey="id"
@@ -22,17 +31,16 @@
 
 <script lang="tsx" setup>
 import { computed, onMounted, ref } from 'vue';
-import { Form, FormItem, Select, Table, Tag } from 'ant-design-vue';
+import { Form, FormItem, Select, Table, Tag,Button, InputNumber } from 'ant-design-vue';
 import useHighScoreList from '../hooks/useHighScoreList';
+import * as XLSX from 'xlsx';
 
-const { state, starsList, initData } = useHighScoreList();
+const { state,params, starsList, initData } = useHighScoreList();
 
 onMounted(async () => {
   await initData();
 });
-const formState = ref<any>({
-  stars: '',
-});
+
 const configTable = computed(
   () =>
     [
@@ -156,6 +164,50 @@ const starsOptions = computed(() =>
     };
   }),
 );
+
+const exportData = () => {
+  const data = state.value.data
+    .filter(
+      (item) =>
+        item.stokcCode.startsWith('60') || item.stokcCode.startsWith('00'),
+    )
+    .map((item) => ({
+    日期: item.createTime,
+    股票名称: item.stockName,
+    开盘入涨跌幅: item.closeOpenPrice,
+    涨跌幅: item.changeRate,
+    股票代码: item.stokcCode,
+    五星: item.stars,
+  }));
+
+  const ws = XLSX.utils.json_to_sheet(data);
+
+  // Apply conditional formatting for '开盘入涨跌幅' and '涨跌幅'
+  data.forEach((row, index) => {
+    const closeOpenPriceCell = `C${index + 2}`;
+    const changeRateCell = `D${index + 2}`;
+
+    if (row.开盘入涨跌幅 && String(row.开盘入涨跌幅).startsWith('-')) {
+      if (!ws[closeOpenPriceCell]) ws[closeOpenPriceCell] = {};
+      ws[closeOpenPriceCell].s = { fill: { fgColor: { rgb: "FF00AA00" }, patternType: "solid" } }; // Green for negative
+    } else if (row.开盘入涨跌幅) {
+      if (!ws[closeOpenPriceCell]) ws[closeOpenPriceCell] = {};
+      ws[closeOpenPriceCell].s = { fill: { fgColor: { rgb: "FFAA0000" }, patternType: "solid" } }; // Red for positive
+    }
+
+    if (row.涨跌幅 && String(row.涨跌幅).startsWith('-')) {
+      if (!ws[changeRateCell]) ws[changeRateCell] = {};
+      ws[changeRateCell].s = { fill: { fgColor: { rgb: "FF00AA00" }, patternType: "solid" } }; // Green for negative
+    } else if (row.涨跌幅) {
+      if (!ws[changeRateCell]) ws[changeRateCell] = {};
+      ws[changeRateCell].s = { fill: { fgColor: { rgb: "FFAA0000" }, patternType: "solid" } }; // Red for positive
+    }
+  });
+
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, '高分量化');
+  XLSX.writeFile(wb, '高分量化.xlsx');
+};
 </script>
 
 <style scoped>

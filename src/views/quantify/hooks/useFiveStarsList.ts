@@ -24,6 +24,7 @@ const useFiveStarsList = () => {
 
   const params = ref({
     stars: '',
+    totalScore: 0,
   });
   const isFirst = ref(false);
   const previousWorkdays = getPreviousWorkdays(85);
@@ -37,14 +38,18 @@ const useFiveStarsList = () => {
         LargeMarketList,
         data.data,
       ).items.filter((item) =>
-        params.value.stars ? item.stars === params.value.stars : item,
+        params.value.totalScore
+          ? +item.totalScore >= params.value.totalScore
+          : item,
       );
     } else {
       state.value.data = plainToInstance(
         LargeMarketList,
         data.data,
       ).firstItems.filter((item) =>
-        params.value.stars ? item.stars === params.value.stars : item,
+        params.value.totalScore
+          ? +item.totalScore >= params.value.totalScore
+          : item,
       );
     }
 
